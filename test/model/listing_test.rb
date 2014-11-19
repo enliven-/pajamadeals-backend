@@ -23,6 +23,7 @@ class ListingTest < MiniTest::Test
     assert listing.respond_to?(:user)
     assert listing.respond_to?(:book)
     assert listing.respond_to?(:college)
+    assert listing.respond_to?(:image)
   end
 
   # test validations

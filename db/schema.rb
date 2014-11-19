@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20141119142834) do
   end
 
   create_table "images", force: true do |t|
-    t.string   "name"
+    t.string   "file"
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20141119142834) do
     t.integer  "user_id"
     t.integer  "college_id"
     t.integer  "book_id"
+    t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

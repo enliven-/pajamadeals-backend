@@ -13,6 +13,7 @@ class CreateListings < ActiveRecord::Migration
       t.references :user
       t.references :college
       t.references :book
+      t.references :image
 
       t.timestamps
     end
