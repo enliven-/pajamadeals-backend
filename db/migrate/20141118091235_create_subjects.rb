@@ -1,6 +1,6 @@
-class CreateAcademicYears < ActiveRecord::Migration
+class CreateSubjects < ActiveRecord::Migration
   def change
-    create_table :academic_years do |t|
+    create_table :subjects do |t|
       t.string :name
       t.string :abbr
 

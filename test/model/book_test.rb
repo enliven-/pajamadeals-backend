@@ -13,5 +13,6 @@ class BookTest < MiniTest::Test
     assert book.respond_to?(:departments)
     assert book.respond_to?(:academic_years)
     assert book.respond_to?(:semesters)
+    assert book.respond_to?(:subjects)
   end
 end

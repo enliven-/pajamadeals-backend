@@ -7,6 +7,12 @@ class DepartmentTest < MiniTest::Test
 
     assert department.respond_to?(:name)
     assert department.respond_to?(:abbr)
-    assert department.respond_to?(:books)
+  end
+
+  def test_department_relations
+    department = Department.new
+
+    assert department.respond_to?(:courses)
+    assert department.respond_to?(:colleges)
   end
 end

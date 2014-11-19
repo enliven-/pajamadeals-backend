@@ -11,86 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118042228) do
-
-  create_table "academic_years", force: true do |t|
-    t.string   "name"
-    t.string   "abbr"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "academic_years_books", force: true do |t|
-    t.integer  "academic_year_id"
-    t.integer  "book_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "active_admin_comments", force: true do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-
-  create_table "admin_users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+ActiveRecord::Schema.define(version: 20141119090257) do
 
   create_table "books", force: true do |t|
     t.string   "title"
     t.string   "authors"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "books_colleges", force: true do |t|
-    t.integer  "book_id"
-    t.integer  "college_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "books_departments", force: true do |t|
-    t.integer  "book_id"
-    t.integer  "department_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "books_semesters", force: true do |t|
-    t.integer  "book_id"
-    t.integer  "semester_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "books_universities", force: true do |t|
-    t.integer  "university_id"
-    t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,6 +30,28 @@ ActiveRecord::Schema.define(version: 20141118042228) do
     t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "colleges_departments", id: false, force: true do |t|
+    t.integer "college_id"
+    t.integer "department_id"
+  end
+
+  create_table "courses", force: true do |t|
+    t.string   "title"
+    t.string   "abbr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses_departments", id: false, force: true do |t|
+    t.integer "course_id"
+    t.integer "department_id"
+  end
+
+  create_table "courses_semesters", id: false, force: true do |t|
+    t.integer "course_id"
+    t.integer "semester_id"
   end
 
   create_table "departments", force: true do |t|
@@ -140,6 +87,18 @@ ActiveRecord::Schema.define(version: 20141118042228) do
   end
 
   create_table "semesters", force: true do |t|
+    t.string   "name"
+    t.string   "abbr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "semesters_subjects", id: false, force: true do |t|
+    t.integer "semester_id"
+    t.integer "subject_id"
+  end
+
+  create_table "subjects", force: true do |t|
     t.string   "name"
     t.string   "abbr"
     t.datetime "created_at"

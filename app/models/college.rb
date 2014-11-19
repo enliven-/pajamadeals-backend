@@ -1,6 +1,4 @@
 class College < ActiveRecord::Base
-  has_many :users
-  has_many :listings
+  has_and_belongs_to_many :departments
   belongs_to :university
-  has_and_belongs_to_many :books
 end

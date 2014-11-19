@@ -6,6 +6,12 @@ class SemesterTest < MiniTest::Test
     semester = Semester.new
 
     assert semester.respond_to?(:name)
-    assert semester.respond_to?(:books)
+  end
+
+  def test_semester_relations
+    semester = Semester.new
+
+    assert semester.respond_to?(:courses)
+    assert semester.respond_to?(:subjects)
   end
 end

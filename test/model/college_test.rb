@@ -11,7 +11,12 @@ class CollegeTest < MiniTest::Test
     assert college.respond_to?(:city)
     assert college.respond_to?(:latitude)
     assert college.respond_to?(:longitude)
+  end
+
+  def test_college_relations
+    college = College.new
+
     assert college.respond_to?(:university)
-    assert college.respond_to?(:books)
+    assert college.respond_to?(:departments)
   end
 end
