@@ -5,7 +5,7 @@ class CourseTest < MiniTest::Test
   def test_course_attributes
     course = Course.new
 
-    assert course.respond_to?(:title)
+    assert course.respond_to?(:name)
     assert course.respond_to?(:abbr)
   end
 

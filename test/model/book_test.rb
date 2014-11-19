@@ -7,6 +7,7 @@ class BookTest < MiniTest::Test
 
     assert book.respond_to?(:title)
     assert book.respond_to?(:authors)
+    assert book.respond_to?(:mrp)
     assert book.respond_to?(:images)
   end
 
@@ -19,5 +20,6 @@ class BookTest < MiniTest::Test
     assert book.respond_to?(:course)
     assert book.respond_to?(:semester)
     assert book.respond_to?(:subject)
+    assert book.respond_to?(:publication)
   end
 end

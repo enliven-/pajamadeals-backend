@@ -14,5 +14,6 @@ class SemesterTest < MiniTest::Test
     assert semester.respond_to?(:courses)
     assert semester.respond_to?(:subjects)
     assert semester.respond_to?(:books)
+    assert semester.respond_to?(:users)
   end
 end

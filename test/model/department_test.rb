@@ -15,5 +15,6 @@ class DepartmentTest < MiniTest::Test
     assert department.respond_to?(:courses)
     assert department.respond_to?(:colleges)
     assert department.respond_to?(:books)
+    assert department.respond_to?(:users)
   end
 end

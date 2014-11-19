@@ -9,8 +9,16 @@ class UserTest < MiniTest::Test
 
     assert user.respond_to?(:name)
     assert user.respond_to?(:mobile_number)
-    assert user.respond_to?(:college)
     assert user.respond_to?(:role)
+    assert user.respond_to?(:department)
+    assert user.respond_to?(:semester)
+  end
+
+  def test_user_relations
+    user = User.new
+
+    assert user.respond_to?(:college)
+    assert user.respond_to?(:listings)
   end
 
   # validations

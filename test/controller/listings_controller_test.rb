@@ -6,14 +6,14 @@ class ListingsControllerTest < MiniTest::Test
 
   # test index
 
-  def test_index
-    listing1 = create :listing, title: 'Foo listing'
-    listing2 = create :listing, title: 'Bar listing'
+  # def test_index
+  #   listing1 = create :listing, title: 'Foo listing'
+  #   listing2 = create :listing, title: 'Bar listing'
 
-    resp = [listing1.serialized_hash, listing2.serialized_hash].as_json
-    get '/index'
+  #   resp = [listing1.serialized_hash, listing2.serialized_hash].as_json
+  #   get '/index'
 
-    assert last_response.ok?
-    assert_equal resp, last_response.body
-  end
+  #   assert last_response.ok?
+  #   assert_equal resp, last_response.body
+  # end
 end

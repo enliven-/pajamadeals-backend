@@ -5,6 +5,7 @@ class Book < ActiveRecord::Base
   belongs_to :course
   belongs_to :semester
   belongs_to :subject
+  belongs_to :publication
 
   has_many :images
 end

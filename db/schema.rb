@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119090257) do
+ActiveRecord::Schema.define(version: 20141119142834) do
 
   create_table "books", force: true do |t|
     t.string   "title"
     t.string   "authors"
+    t.string   "mrp"
     t.integer  "university_id"
     t.integer  "college_id"
     t.integer  "department_id"
     t.integer  "course_id"
     t.integer  "semester_id"
     t.integer  "subject_id"
+    t.integer  "publication_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141119090257) do
   end
 
   create_table "courses", force: true do |t|
-    t.string   "title"
+    t.string   "name"
     t.string   "abbr"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,6 +94,12 @@ ActiveRecord::Schema.define(version: 20141119090257) do
     t.datetime "updated_at"
   end
 
+  create_table "publications", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "semesters", force: true do |t|
     t.string   "name"
     t.string   "abbr"
@@ -120,8 +128,10 @@ ActiveRecord::Schema.define(version: 20141119090257) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "mobile_number"
-    t.integer  "college_id"
     t.integer  "role",          default: 0
+    t.integer  "college_id"
+    t.integer  "department_id"
+    t.integer  "semester_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
