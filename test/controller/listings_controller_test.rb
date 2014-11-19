@@ -16,4 +16,5 @@ class ListingsControllerTest < MiniTest::Test
   #   assert last_response.ok?
   #   assert_equal resp, last_response.body
   # end
+
 end

@@ -8,4 +8,5 @@ class Book < ActiveRecord::Base
   belongs_to :publication
 
   has_many :images
+  has_many :listings
 end

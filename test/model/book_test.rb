@@ -21,5 +21,7 @@ class BookTest < MiniTest::Test
     assert book.respond_to?(:semester)
     assert book.respond_to?(:subject)
     assert book.respond_to?(:publication)
+    assert book.respond_to?(:listings)
+    assert false
   end
 end

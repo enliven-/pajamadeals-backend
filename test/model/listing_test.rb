@@ -7,30 +7,25 @@ class ListingTest < MiniTest::Test
   def test_listing_attributes
     listing = Listing.new
 
-    assert listing.respond_to?(:title), 'should have title attribute'
     assert listing.respond_to?(:description)
     assert listing.respond_to?(:price)
-    assert listing.respond_to?(:image)
-    assert listing.respond_to?(:user)
-    assert listing.respond_to?(:college)
     assert listing.respond_to?(:spam)
     assert listing.respond_to?(:deleted)
     assert listing.respond_to?(:sold)
     assert listing.respond_to?(:markings)
     assert listing.respond_to?(:quality)
     assert listing.respond_to?(:torn)
-    assert listing.respond_to?(:edition)
+  end
+
+  def test_listing_relations
+    listing = Listing.new
+
+    assert listing.respond_to?(:user)
+    assert listing.respond_to?(:book)
+    assert listing.respond_to?(:college)
   end
 
   # test validations
-  def test_title_present
-    listing = build(:listing)
-    listing.title = nil
-
-    assert !listing.valid?
-    assert !listing.save
-    assert !listing.errors.empty?
-  end
 
   def test_price_present_and_numerical
     listing = build(:listing)

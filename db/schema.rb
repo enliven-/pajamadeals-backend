@@ -77,19 +77,17 @@ ActiveRecord::Schema.define(version: 20141119142834) do
   end
 
   create_table "listings", force: true do |t|
-    t.string   "title"
     t.text     "description"
     t.string   "price"
-    t.string   "image"
     t.integer  "quality"
     t.integer  "markings"
-    t.string   "edition"
     t.boolean  "torn",        default: false
     t.boolean  "spam",        default: false
     t.boolean  "deleted",     default: false
     t.boolean  "sold",        default: false
     t.integer  "user_id"
     t.integer  "college_id"
+    t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
