@@ -8,11 +8,16 @@ class BookTest < MiniTest::Test
     assert book.respond_to?(:title)
     assert book.respond_to?(:authors)
     assert book.respond_to?(:images)
-    assert book.respond_to?(:universities)
-    assert book.respond_to?(:colleges)
-    assert book.respond_to?(:departments)
-    assert book.respond_to?(:academic_years)
-    assert book.respond_to?(:semesters)
-    assert book.respond_to?(:subjects)
+  end
+
+  def test_book_relations
+    book = Book.new
+
+    assert book.respond_to?(:university)
+    assert book.respond_to?(:college)
+    assert book.respond_to?(:department)
+    assert book.respond_to?(:course)
+    assert book.respond_to?(:semester)
+    assert book.respond_to?(:subject)
   end
 end

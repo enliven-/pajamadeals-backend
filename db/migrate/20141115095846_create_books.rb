@@ -3,6 +3,12 @@ class CreateBooks < ActiveRecord::Migration
     create_table :books do |t|
       t.string :title
       t.string :authors
+      t.references :university
+      t.references :college
+      t.references :department
+      t.references :course
+      t.references :semester
+      t.references :subject
 
       t.timestamps
     end

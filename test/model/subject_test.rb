@@ -13,5 +13,6 @@ class SubjectTest < MiniTest::Test
     subject = Subject.new
 
     assert subject.respond_to?(:semesters)
+    assert subject.respond_to?(:books)
   end
 end

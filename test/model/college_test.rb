@@ -18,5 +18,6 @@ class CollegeTest < MiniTest::Test
 
     assert college.respond_to?(:university)
     assert college.respond_to?(:departments)
+    assert college.respond_to?(:books)
   end
 end

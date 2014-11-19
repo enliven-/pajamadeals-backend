@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 20141119090257) do
   create_table "books", force: true do |t|
     t.string   "title"
     t.string   "authors"
+    t.integer  "university_id"
+    t.integer  "college_id"
+    t.integer  "department_id"
+    t.integer  "course_id"
+    t.integer  "semester_id"
+    t.integer  "subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

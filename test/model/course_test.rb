@@ -14,5 +14,6 @@ class CourseTest < MiniTest::Test
 
     assert course.respond_to?(:departments)
     assert course.respond_to?(:semesters)
+    assert course.respond_to?(:books)
   end
 end
