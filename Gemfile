@@ -22,7 +22,9 @@ gem 'multi_json',   group: :test
 gem 'rack-test',    group: :test
 gem 'mocha',        group: :test
 gem 'factory_girl', group: :test
-gem 'minitest-emoji', group: :test
+# gem 'minitest-emoji', group: :test
+gem 'minitest-reporters', group: :test
+gem 'database_cleaner', group: :test
 
 # file uploads
 gem 'carrierwave'

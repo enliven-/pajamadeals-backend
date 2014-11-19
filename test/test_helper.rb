@@ -2,7 +2,9 @@ ENV['RACK_ENV'] = 'test'
 require 'rubygems'
 require 'bundler'
 require 'minitest/autorun'
-require 'minitest/emoji'
+require 'minitest/reporters'
+# require 'minitest/pride'
+# require 'minitest/emoji'
 
 Bundler.require(:default, :test)
 
@@ -12,8 +14,22 @@ end
 
 FactoryGirl.definition_file_paths = %w{./factories ./test/factories}
 FactoryGirl.find_definitions
+Minitest::Reporters.use!
 
 class MiniTest::Test
   include Rack::Test::Methods
   include FactoryGirl::Syntax::Methods
+  I18n.enforce_available_locales = false
+
+end
+
+class MiniTest::Spec
+  before :each do
+    DatabaseCleaner.start
+  end
+
+  after :each do
+    DatabaseCleaner.clean
+  end
+
 end

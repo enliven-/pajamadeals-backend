@@ -14,6 +14,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    ansi (1.4.3)
     arel (5.0.1.20140414130214)
     backports (3.6.4)
     bond (0.5.1)
@@ -23,6 +24,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    database_cleaner (1.3.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     gem-open (0.1.7)
@@ -33,7 +35,11 @@ GEM
     mini_magick (3.8.1)
       subexec (~> 0.2.1)
     minitest (5.4.2)
-    minitest-emoji (2.0.0)
+    minitest-reporters (1.0.7)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.10.1)
@@ -51,6 +57,7 @@ GEM
       rack (>= 1.0)
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
+    ruby-progressbar (1.7.0)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.4.5)
@@ -84,12 +91,13 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 4.1.7)
   carrierwave
+  database_cleaner
   factory_girl
   gem-open
   json
   mini_magick
   minitest
-  minitest-emoji
+  minitest-reporters
   mocha
   multi_json
   mysql2
