@@ -12,6 +12,7 @@ gem 'mysql2'
 gem 'shotgun', group: :development
 gem 'tux', group: :development
 gem 'gem-open', group: :development
+gem 'thin', group: :development
 
 # json rendering
 gem 'json'
@@ -29,3 +30,11 @@ gem 'database_cleaner', group: :test
 # file uploads
 gem 'carrierwave'
 gem 'mini_magick'
+
+
+# deployment
+gem 'capistrano'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'
+gem 'capistrano-db-tasks', require: false
+
