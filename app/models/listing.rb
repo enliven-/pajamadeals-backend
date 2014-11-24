@@ -8,6 +8,9 @@ class Listing < ActiveRecord::Base
   validates :user,    presence: true
   validates :college, presence: true
 
+  delegate :title, :authors, :mrp, :department, :semester, :subject,
+           :publication, to: :book
+
   extend CarrierWave::Mount
   mount_uploader :image, ImageUploader
 
@@ -21,26 +24,24 @@ class Listing < ActiveRecord::Base
     data[:title]         = title
     data[:description]   = description
     data[:price]         = price
-    data[:image]         = {}
-    data[:image][:thumb] = image.thumb.url
+    data[:mrp]           = mrp
+    data[:authors]       = authors
     data[:quality]       = quality
     data[:markings]      = markings
-    data[:edition]       = edition
     data[:torn]          = torn
     data[:sold]          = sold
     data[:created_at]    = created_at
+
+    data[:publication]   = publication.name
+
+    data[:image]         = {}
+    data[:image][:thumb] = image.thumb.url
 
     data[:college]        = {}
     data[:college][:id]   = college.id
     data[:college][:name] = college.name
     data[:college][:abbr] = college.abbr
     data[:college][:city] = college.city
-
-    data[:user]                 = {}
-    data[:user][:id]            = user.id
-    data[:user][:name]          = user.name
-    data[:user][:mobile_number] = user.mobile_number
-    data[:user][:role]          = user.role
 
     data
   end
