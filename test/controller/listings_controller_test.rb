@@ -6,15 +6,33 @@ class ListingsControllerTest < MiniTest::Test
 
   # test index
 
-  # def test_index
-  #   listing1 = create :listing, title: 'Foo listing'
-  #   listing2 = create :listing, title: 'Bar listing'
+  def test_index
+    book1 = create :book, title: 'book 1'
+    book2 = create :book, title: 'book 2'
+    listing1 = create :listing, book: book1
+    listing2 = create :listing, book: book2
+    resp = [listing1.serialized_hash, listing2.serialized_hash].to_json
 
-  #   resp = [listing1.serialized_hash, listing2.serialized_hash].as_json
-  #   get '/index'
+    get '/'
 
-  #   assert last_response.ok?
-  #   assert_equal resp, last_response.body
-  # end
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  # test show
+
+  # context: record exists
+  def test_show
+    listing = create :listing
+    id = listing.id
+
+    get "/show/#{id}"
+
+    assert last_response.ok?
+    assert_equal listing.serialized_hash.to_json, last_response.body
+  end
+
+  # context: record doesn't exist
+
 
 end

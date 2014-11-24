@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
 
-  get '/index' do
+  get '/' do
     @listings = Listing.all
 
     @listings.collect! { |listing| listing.serialized_hash }
@@ -8,10 +8,14 @@ class ListingsController < ApplicationController
     json @listings
   end
 
+  get '/show/:id' do
+    raise params.inspect
+  end
+
   post '/create' do
     @listing = Listing.new(params[:listing])
     if @listing.save
-      json @listing
+      render @listing.to_json
     else
       # error
     end

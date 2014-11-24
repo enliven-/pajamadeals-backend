@@ -4,6 +4,7 @@ require 'bundler'
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'database_cleaner'
+require 'sinatra/json'
 # require 'minitest/pride'
 # require 'minitest/emoji'
 

@@ -30,7 +30,7 @@ class Listing < ActiveRecord::Base
     data[:markings]      = markings
     data[:torn]          = torn
     data[:sold]          = sold
-    data[:created_at]    = created_at
+    data[:created_at]    = created_at.to_s
 
     data[:publication]   = publication.name
 

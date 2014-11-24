@@ -11,3 +11,4 @@ end
 
 map('/') { run ApplicationController }
 map('/listings') { run ListingsController }
+map('/books') { run BooksController }

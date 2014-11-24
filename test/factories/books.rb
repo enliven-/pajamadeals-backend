@@ -5,5 +5,10 @@ FactoryGirl.define do
     mrp '200'
 
     publication
+    subject
+    semester
+    course
+    department
+    university
   end
 end
