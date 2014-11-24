@@ -3,6 +3,7 @@ require 'rubygems'
 require 'bundler'
 require 'minitest/autorun'
 require 'minitest/reporters'
+require 'database_cleaner'
 # require 'minitest/pride'
 # require 'minitest/emoji'
 
@@ -21,15 +22,8 @@ class MiniTest::Test
   include FactoryGirl::Syntax::Methods
   I18n.enforce_available_locales = false
 
-end
-
-class MiniTest::Spec
-  before :each do
-    DatabaseCleaner.start
-  end
-
-  after :each do
+  def before_setup
+    DatabaseCleaner.strategy = :truncation, { pre_count: true }
     DatabaseCleaner.clean
   end
-
 end
