@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'sinatra', '1.4.5'
 gem 'sinatra-contrib'
 
-# database
+# models and database
 gem 'activerecord', '~> 4.1.7'
 gem 'sinatra-activerecord', '~> 2.0.3'
 gem 'mysql2'
