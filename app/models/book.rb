@@ -24,5 +24,7 @@ class Book < ActiveRecord::Base
     data[:subject]     = subject.name
     data[:publication] = publication.name
     data[:university]  = university.name
+
+    data
   end
 end
