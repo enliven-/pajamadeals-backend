@@ -6,7 +6,7 @@ class Listing < ActiveRecord::Base
 
   validates :price,   presence: true, numericality: { greater_than: 0 }
   validates :user,    presence: true
-  validates :college, presence: true
+  # validates :college, presence: true, on: :create
 
   delegate :title, :authors, :mrp, :department, :semester, :subject,
            :publication, to: :book
@@ -48,8 +48,8 @@ class Listing < ActiveRecord::Base
 
   private
 
+  before_create :set_college
   def set_college
     self.college = user.college
   end
-  before_create :set_college
 end

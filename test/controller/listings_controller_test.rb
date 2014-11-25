@@ -4,7 +4,7 @@ class ListingsControllerTest < MiniTest::Test
     ListingsController
   end
 
-  # test index
+  ## test index
 
   def test_index
     book1 = create :book, title: 'book 1'
@@ -19,7 +19,7 @@ class ListingsControllerTest < MiniTest::Test
     assert_equal resp, last_response.body
   end
 
-  # test show
+  ## test show
 
   # context: record exists
   def test_show
@@ -34,5 +34,18 @@ class ListingsControllerTest < MiniTest::Test
 
   # context: record doesn't exist
 
+  # ....
+
+  ## test create
+
+  def test_create
+    listing = build(:listing).attributes.except(:id, :created_at, :updated_at)
+    listing_count = Listing.count
+
+    post '/create', listing: listing
+
+    assert last_response.ok?
+    assert_equal listing_count + 1, Listing.count
+  end
 
 end
