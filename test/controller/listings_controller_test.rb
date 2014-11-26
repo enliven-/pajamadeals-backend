@@ -82,4 +82,36 @@ class ListingsControllerTest < MiniTest::Test
     assert_equal user_count, User.count
   end
 
+  def test_create_when_book_is_present
+    book = create :book
+    user = create :user
+    listing = attributes_for(:listing)
+              .merge(book_id: book.id)
+              .merge(user_attributes: user.attributes.except("id", "role"))
+
+    listing_count = Listing.count
+    book_count = Book.count
+
+    post '/create', listing: listing
+
+    assert last_response.ok?
+    assert_equal listing_count + 1, Listing.count
+    assert_equal book_count, Book.count
+  end
+
+  def test_create_when_book_is_not_present
+    user = create :user
+    listing = attributes_for(:listing)
+              .merge(book_attributes: attributes_for(:book).except("id"))
+              .merge(user_attributes: user.attributes.except("id", "role"))
+    listing_count = Listing.count
+    book_count = Book.count
+
+    post '/create', listing: listing
+
+    assert last_response.ok?
+    assert_equal listing_count + 1, Listing.count
+    assert_equal book_count + 1, Book.count
+  end
+
 end

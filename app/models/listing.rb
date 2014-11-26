@@ -2,7 +2,9 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   belongs_to :college
   belongs_to :book
+  accepts_nested_attributes_for :book
   belongs_to :image
+  has_many :orders
 
   validates :price,   presence: true, numericality: { greater_than: 0 }
   validates :user,    presence: true
@@ -30,12 +32,12 @@ class Listing < ActiveRecord::Base
     data[:markings]      = markings
     data[:torn]          = torn
     data[:sold]          = sold
-    data[:created_at]    = created_at.to_s
+    data[:created_at]    = created_at.try(:to_s)
 
-    data[:publication]   = publication.name
+    data[:publication]   = publication.try(:name)
 
     data[:image]         = {}
-    data[:image][:thumb] = image.thumb.url
+    data[:image][:thumb] = image.try(:thumb).try(:url)
 
     data[:college]        = {}
     data[:college][:id]   = college.id
