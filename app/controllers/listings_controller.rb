@@ -15,6 +15,9 @@ class ListingsController < ApplicationController
       params[:listing][:imaged_id] = params[:listing][:imaged_id].to_i \
                                         if params[:listing][:imaged_id].present?
 
+      params[:listing][:user_attributes][:role] =
+        params[:listing][:user_attributes][:role].to_i \
+        if params[:listing][:user_attributes][:role].present?
     end
   end
 
@@ -33,7 +36,13 @@ class ListingsController < ApplicationController
   end
 
   post '/create' do
+    user_attributes = params[:listing].delete("user_attributes")
+
+    user = User.find_by(mobile: user_attributes[:mobile]) ||
+                                                    User.create(user_attributes)
+
     @listing = Listing.new(params[:listing])
+    @listing.user = user
 
     if @listing.save
       json @listing.serialized_hash

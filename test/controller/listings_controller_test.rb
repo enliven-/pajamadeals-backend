@@ -38,14 +38,48 @@ class ListingsControllerTest < MiniTest::Test
 
   ## test create
 
-  def test_create
-    listing = build(:listing).attributes.except(:id, :created_at, :updated_at)
+  # def test_create
+  #   listing = build(:listing).attributes.except(:id, :created_at, :updated_at)
+  #   listing_count = Listing.count
+
+  #   post '/create', listing: listing
+
+  #   assert last_response.ok?
+  #   assert_equal listing_count + 1, Listing.count
+  # end
+
+  def test_create_with_user_attributes_when_user_not_present
+    book = create :book
+    college = create :college
+    listing = attributes_for(:listing)
+              .merge(book_id: book.id)
+              .merge(user_attributes: attributes_for(:user)
+                .merge(college_id: college.id))
     listing_count = Listing.count
+    user_count = User.count
 
     post '/create', listing: listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
+    assert_equal user_count + 1, User.count
+  end
+
+  def test_create_with_user_attributes_when_user_is_present
+    book = create :book
+    user = create :user
+    listing = attributes_for(:listing)
+              .merge(book_id: book.id)
+              .merge(user_attributes: user.attributes.except("id", "role"))
+
+    listing_count = Listing.count
+    user_count = User.count
+
+    post '/create', listing: listing
+
+    assert last_response.ok?
+    assert_equal listing_count + 1, Listing.count
+    assert_equal user_count, User.count
   end
 
 end
