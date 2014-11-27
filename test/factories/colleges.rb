@@ -4,4 +4,10 @@ FactoryGirl.define do
     abbr 'FBI'
     zipcode '422009'
   end
+
+  factory :vit, class: College do
+    name 'Vishwakarma Institute of Technology'
+    abbr 'VIT'
+    zipcode '411037'
+  end
 end

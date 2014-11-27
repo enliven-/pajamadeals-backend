@@ -8,7 +8,7 @@ class UserTest < MiniTest::Test
     user = User.new
 
     assert user.respond_to?(:name)
-    assert user.respond_to?(:mobile_number)
+    assert user.respond_to?(:mobile)
     assert user.respond_to?(:role)
     assert user.respond_to?(:department)
     assert user.respond_to?(:semester)
@@ -19,6 +19,8 @@ class UserTest < MiniTest::Test
 
     assert user.respond_to?(:college)
     assert user.respond_to?(:listings)
+    assert user.respond_to?(:sell_orders)
+    assert user.respond_to?(:buy_orders)
   end
 
   # validations
@@ -32,9 +34,9 @@ class UserTest < MiniTest::Test
     assert !user.errors.empty?
   end
 
-  def test_presence_of_mobile_number
+  def test_presence_of_mobile
     user = build(:user)
-    user.mobile_number = nil
+    user.mobile = nil
 
     assert !user.valid?
     assert !user.save
