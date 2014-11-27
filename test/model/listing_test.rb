@@ -24,6 +24,7 @@ class ListingTest < MiniTest::Test
     assert listing.respond_to?(:book)
     assert listing.respond_to?(:college)
     assert listing.respond_to?(:image)
+    assert listing.respond_to?(:orders)
   end
 
   # test validations
@@ -52,14 +53,14 @@ class ListingTest < MiniTest::Test
     assert !listing.errors.empty?
   end
 
-  def test_college_present
-    listing = build(:listing)
-    listing.college = nil
+  # def test_college_present
+  #   listing = build(:listing)
+  #   listing.college = nil
 
-    assert !listing.valid?
-    assert !listing.save
-    assert !listing.errors.empty?
-  end
+  #   assert !listing.valid?
+  #   assert !listing.save
+  #   assert !listing.errors.empty?
+  # end
 
   # test the default paramerters listing is created with
 
