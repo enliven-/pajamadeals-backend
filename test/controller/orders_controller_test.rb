@@ -8,10 +8,12 @@ class OrdersControllerTest < MiniTest::Test
 
   # test create
   def test_create
-    order = build(:order)
+    order = build(:order).attributes.except("id", "created_at", "updated_at",
+                                           "seller_id")
+      .merge(buyer_attributes: build(:ankush).attributes.except("id"))
     order_count = Order.count
 
-    post '/create', order: order
+    post '/', order
 
     assert last_response.ok?
     assert order_count + 1, Order.count

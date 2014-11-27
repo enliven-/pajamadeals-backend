@@ -9,6 +9,6 @@ FactoryGirl.define do
    name 'Ankush Zanwar'
    mobile '9976543210'
 
-   association :college, factory: :vit
+   college
  end
 end

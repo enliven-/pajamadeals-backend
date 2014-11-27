@@ -11,4 +11,7 @@ class User < ActiveRecord::Base
   validates :college, presence: true
 
   enum role: { user: 0, admin: 1, ambassador: 2, intern: 3 }
+
+  # def self.create(
+  # end
 end

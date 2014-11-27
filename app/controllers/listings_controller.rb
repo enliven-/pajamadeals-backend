@@ -36,7 +36,6 @@ class ListingsController < ApplicationController
   end
 
   post '/' do
-    raise params.inspect
     user_attributes = params.delete("user_attributes")
 
     user = User.find_by(mobile: user_attributes[:mobile]) ||

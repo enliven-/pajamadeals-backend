@@ -26,5 +26,7 @@ class OrderTest < MiniTest::Test
     assert order.status.present?
     assert_equal "created", order.status
     assert order.college.present?
+    assert order.seller.present?
+    assert_equal order.listing.user, order.seller
   end
 end

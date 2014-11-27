@@ -12,4 +12,9 @@ class Order < ActiveRecord::Base
   def set_college
     self.college = listing.college
   end
+
+  before_create :set_seller
+  def set_seller
+    self.seller = listing.user
+  end
 end

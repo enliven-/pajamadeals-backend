@@ -1,17 +1,23 @@
 class OrdersController < ApplicationController
-  before '/create' do
-    if params[:order].present?
-      params[:order][:listing_id] = params[:order][:listing_id].to_i \
-                                         if params[:order][:listing_id].present?
-      params[:order][:seller_id] = params[:order][:seller_id].to_i \
-                                         if params[:order][:seller_id].present?
-      params[:order][:buyer_id] = params[:order][:buyer_id].to_i \
-                                         if params[:order][:buyer_id].present?
+  before do
+    if params.present?
+      params[:listing_id] = params[:listing_id].to_i \
+                                         if params[:listing_id].present?
+      params[:seller_id] = params[:seller_id].to_i \
+                                         if params[:seller_id].present?
+      params[:buyer_id] = params[:buyer_id].to_i if params[:buyer_id].present?
+      params[:status] = params[:status].to_i if params[:status].present?
     end
   end
 
-  post '/create' do
-    order = Order.new(params[:order])
+  post '/' do
+    buyer_attributes = params.delete("buyer_attributes")
+
+    buyer = User.find_by(mobile: buyer_attributes[:mobile]) ||
+                                                  User.create(buyer_attributes)
+
+    order = Order.new(params)
+    order.buyer = buyer
     if order.save
       # success
     else
