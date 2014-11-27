@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :college
       t.references :seller
       t.references :buyer
+      t.references :handler
 
       t.timestamps
     end

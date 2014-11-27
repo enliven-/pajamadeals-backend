@@ -17,7 +17,7 @@ class OrderTest < MiniTest::Test
     assert order.respond_to?(:college)
     assert order.respond_to?(:seller)
     assert order.respond_to?(:buyer)
-    # assert order.respond_to?(:handler)
+    assert order.respond_to?(:handler)
   end
 
   def test_create_order_with_default_values

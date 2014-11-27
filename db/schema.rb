@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20141125122642) do
     t.integer  "college_id"
     t.integer  "seller_id"
     t.integer  "buyer_id"
+    t.integer  "handler_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
