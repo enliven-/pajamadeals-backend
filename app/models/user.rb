@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   enum role: { user: 0, admin: 1, ambassador: 2, intern: 3 }
 
-  # def self.create(
-  # end
+  def orders
+    sell_orders + buy_orders
+  end
 end
