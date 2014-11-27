@@ -1,23 +1,23 @@
 class ListingsController < ApplicationController
-  before '/create' do
+  before '/' do
     # sanitaize params
-    if params[:listing].present?
-      params[:listing][:id]        = params[:listing][:id].to_i \
-                                        if params[:listing][:id].present?
-      params[:listing][:quality]   = params[:listing][:quality].to_i \
-                                        if params[:listing][:quality].present?
-      params[:listing][:markings]  = params[:listing][:markings].to_i \
-                                        if params[:listing][:markings].present?
-      params[:listing][:userd_id]  = params[:listing][:userd_id].to_i \
-                                        if params[:listing][:userd_id].present?
-      params[:listing][:bookd_id]  = params[:listing][:bookd_id].to_i \
-                                        if params[:listing][:bookd_id].present?
-      params[:listing][:imaged_id] = params[:listing][:imaged_id].to_i \
-                                        if params[:listing][:imaged_id].present?
+    if params.present?
+      params[:id]        = params[:id].to_i \
+                                        if params[:id].present?
+      params[:quality]   = params[:quality].to_i \
+                                        if params[:quality].present?
+      params[:markings]  = params[:markings].to_i \
+                                        if params[:markings].present?
+      params[:userd_id]  = params[:userd_id].to_i \
+                                        if params[:userd_id].present?
+      params[:bookd_id]  = params[:bookd_id].to_i \
+                                        if params[:bookd_id].present?
+      params[:imaged_id] = params[:imaged_id].to_i \
+                                        if params[:imaged_id].present?
 
-      params[:listing][:user_attributes][:role] =
-        params[:listing][:user_attributes][:role].to_i \
-        if params[:listing][:user_attributes][:role].present?
+      params[:user_attributes][:role] =
+        params[:user_attributes][:role].to_i \
+        if params[:user_attributes][:role].present?
     end
   end
 
@@ -35,13 +35,13 @@ class ListingsController < ApplicationController
     json listing.serialized_hash
   end
 
-  post '/create' do
-    user_attributes = params[:listing].delete("user_attributes")
+  post '/' do
+    user_attributes = params.delete("user_attributes")
 
     user = User.find_by(mobile: user_attributes[:mobile]) ||
                                                     User.create(user_attributes)
 
-    @listing = Listing.new(params[:listing])
+    @listing = Listing.new(params)
     @listing.user = user
 
     if @listing.save

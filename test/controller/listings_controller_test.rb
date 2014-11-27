@@ -58,7 +58,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     user_count = User.count
 
-    post '/create', listing: listing
+    post '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
@@ -75,7 +75,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     user_count = User.count
 
-    post '/create', listing: listing
+    post '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
@@ -92,7 +92,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     book_count = Book.count
 
-    post '/create', listing: listing
+    post '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
@@ -107,7 +107,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     book_count = Book.count
 
-    post '/create', listing: listing
+    post '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
