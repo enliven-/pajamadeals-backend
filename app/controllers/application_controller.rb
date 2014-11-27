@@ -3,7 +3,7 @@ class ApplicationController < Sinatra::Base
   enable :logging
 
   configure :test do
-    ActiveRecord::Base.logger.level = Logger::INFO
+    ActiveRecord::Base.logger = nil
   end
 
   before do
