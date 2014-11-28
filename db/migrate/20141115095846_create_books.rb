@@ -6,7 +6,6 @@ class CreateBooks < ActiveRecord::Migration
       t.string :mrp
 
       t.references :university
-      t.references :college
       t.references :department
       t.references :course
       t.references :semester

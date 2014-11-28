@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20141125122642) do
     t.string   "authors"
     t.string   "mrp"
     t.integer  "university_id"
-    t.integer  "college_id"
     t.integer  "department_id"
     t.integer  "course_id"
     t.integer  "semester_id"
