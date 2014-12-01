@@ -1,6 +1,7 @@
 class ApplicationController < Sinatra::Base
   helpers ApplicationHelper
   enable :logging
+  enable :raise_errors
 
   configure :test do
     ActiveRecord::Base.logger = nil
