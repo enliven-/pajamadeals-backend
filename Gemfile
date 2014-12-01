@@ -37,3 +37,6 @@ gem 'capistrano-rvm'
 gem 'capistrano-bundler'
 gem 'capistrano-db-tasks', require: false
 
+# error logging
+gem 'airbrake'
+
