@@ -20,6 +20,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    raise 'Sinatra has left the room'
+    begin
+      raise 'Sinatra has left the room'
+    rescue Exception => e
+      Airbrake.notify e
+    end
+    ENV['RACK_ENV']
   end
 end
