@@ -19,6 +19,105 @@ class ListingsControllerTest < MiniTest::Test
     assert_equal resp, last_response.body
   end
 
+  def test_index_with_search_param_in_book_title
+    book1 = create :book, title: 'Thoery of Machine'
+    book2 = create :book, title: 'Design of Machine'
+    listing1 = create :listing, book: book1
+    listing2 = create :listing, book: book2
+    Listing.reindex
+
+    get '/', q: 'Design of Machine'
+    resp = [listing2.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+
+    get '/', q: 'Design'
+    resp = [listing2.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+
+
+    get '/', q: 'Machine'
+    resp = [listing1.serialized_hash, listing2.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  def test_index_with_search_param_in_subject
+    subject1 = create :subject, name: 'Machine Design'
+    subject2 = create :subject, name: 'Engineering Graphics'
+    book1 = create :book, subject: subject1
+    book2 = create :book, subject: subject2
+    listing1 = create :listing, book: book1
+    listing2 = create :listing, book: book2
+    Listing.reindex
+
+    get '/', q: 'Design'
+    resp = [listing1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  def test_index_with_publication_filter
+    publication1 = create :publication, name: 'Techmax'
+    publication2 = create :publication, name: 'Technical'
+    book1 = create :book, publication: publication1
+    book2 = create :book, publication: publication2
+    listing1 = create :listing, book: book1
+    listing2 = create :listing, book: book2
+    Listing.reindex
+
+    get '/', publication_id: publication1.id
+    resp = [listing1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  def test_index_with_college_filter
+    college1 = create :college, name: 'Vishwakarma Institute of Technology'
+    college2 = create :college, name: 'Cummins College'
+    user1 = create :user, college: college1
+    user2 = create :user, college: college2
+    listing1 = create :listing, user: user1
+    listing2 = create :listing, user: user2
+    Listing.reindex
+
+    get '/', college_id: college1.id
+    resp = [listing1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  def test_index_with_department_filter
+    department1 = create :department, name: 'Mechanical Engineering'
+    department2 = create :department, name: 'Computer Engineering'
+    book1 = create :book, department: department1
+    book2 = create :book, department: department2
+    listing1 = create :listing, book: book1
+    listing2 = create :listing, book: book2
+    Listing.reindex
+
+    get '/', department_id: department1.id
+    resp = [listing1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  def test_index_with_semester_filter
+    semester1 = create :semester, name: 'Mechanical Engineering'
+    semester2 = create :semester, name: 'Computer Engineering'
+    book1 = create :book, semester: semester1
+    book2 = create :book, semester: semester2
+    listing1 = create :listing, book: book1
+    listing2 = create :listing, book: book2
+    Listing.reindex
+
+    get '/', semester_id: semester1.id
+    resp = [listing1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
   ## test show
 
   # context: record exists

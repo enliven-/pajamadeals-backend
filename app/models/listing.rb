@@ -1,5 +1,4 @@
 class Listing < ActiveRecord::Base
-  searchkick
 
   belongs_to :user
   belongs_to :college
@@ -48,6 +47,24 @@ class Listing < ActiveRecord::Base
     data[:college][:city] = college.city
 
     data
+  end
+
+  # search
+
+  searchkick
+
+  def search_data
+    {
+      title:          title,
+      authors:        authors,
+      subject_name:   subject.name,
+      subject_id:     subject.id,
+      semester_id:    semester.id,
+      department_id:  department.id,
+      university_id:  college.university.id,
+      college_id:     college.id,
+      publication_id: publication.id
+    }
   end
 
   private

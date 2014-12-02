@@ -25,7 +25,7 @@ gem 'mocha',        group: :test
 gem 'factory_girl', group: :test
 gem 'minitest-reporters', group: :test
 gem 'database_cleaner', group: :test
-
+gem 'm', '~> 1.3.1', group: :test
 # file uploads
 gem 'carrierwave'
 gem 'mini_magick'
