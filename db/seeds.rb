@@ -1,9 +1,11 @@
 require 'rubygems'
-require 'bundler'
+require 'sinatra'
+require 'carrierwave'
+require 'searchkick'
 
-Bundler.require
-
-ENV['RACK_ENV'] ||= 'development'
+# Bundler.require
+#
+# ENV['RACK_ENV'] ||= 'development'
 
 Dir.glob('./{config/initializers,lib,app/uploaders,app/helpers,app/controllers,app/models}/*.rb').each do |file|
   require file
@@ -33,7 +35,11 @@ subject = Subject.create name: 'Machine Design', abbr: 'MD'
 publication = Publication.create name: 'Techmax'
 
 # book
-book = Book.create title: 'Design of Machine', authors: 'Shantaram', mrp: '450',
+book1 = Book.create title: 'Design of Machine', authors: 'Shantaram', mrp: '450',
+  university: university, department: department, course: course,
+  semester: semester, subject: subject, publication: publication
+  
+book2 = Book.create title: 'Theory of Machine', authors: 'Shantaram', mrp: '450',
   university: university, department: department, course: course,
   semester: semester, subject: subject, publication: publication
 
@@ -42,8 +48,11 @@ user1 = User.create name: 'Ankush Zanwar', mobile: '9975454381', college: colleg
 user2 = User.create name: 'Abhisekh Sohane', mobile: '9975454382', college: college
 
 # listing
-listing = Listing.create book: book, user: user1, description: 'lorem ipsum',
+listing1 = Listing.create book: book1, user: user1, description: 'lorem ipsum',
+  price: '200', markings: 0, quality: 0
+  
+listing1 = Listing.create book: book2, user: user2, description: 'lorem ipsum',
   price: '200', markings: 0, quality: 0
 
 # order
-order = Order.create listing: listing, buyer: user2, handler: AdminUser.first
+order = Order.create listing: listing1, buyer: user2, handler: AdminUser.first

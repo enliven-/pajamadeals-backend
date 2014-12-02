@@ -1,4 +1,6 @@
 class Listing < ActiveRecord::Base
+  searchkick
+
   belongs_to :user
   belongs_to :college
   belongs_to :book
