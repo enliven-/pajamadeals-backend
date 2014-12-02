@@ -34,7 +34,6 @@ class ListingsController < ApplicationController
     conditions[:publication_id] = params[:publication_id] if params[:publication_id]
     
     @listings = Listing.search(params[:q], where: conditions, facets: [:college_id, :department_id, :publication_id, :semester_id], smart_facets: true).results
-                                                             
     @listings.collect! { |listing| listing.serialized_hash }
     json @listings
   end
