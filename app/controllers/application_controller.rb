@@ -19,6 +19,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    ENV['RACK_ENV']
+    json ENV['RACK_ENV']
   end
 end
