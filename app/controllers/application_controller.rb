@@ -6,25 +6,19 @@ class ApplicationController < Sinatra::Base
   configure :test do
     ActiveRecord::Base.logger = nil
   end
-  
+
   configure :production do
     Airbrake.configure do |config|
-      config.api_key = "c6b1addaa8d0cea0da8b61cfdb27f76e6cb855af"
+      config.api_key = 'f13597f5bb541d297c4056299658b501221640b5'
     end
     use Airbrake::Sinatra
   end
-  
-
   before do
     content_type :json
   end
 
   get '/' do
-    begin
-      raise 'Sinatra has left the room'
-    rescue Exception => e
-      Airbrake.notify e
-    end
+    raise 'Sinatra has left the room'
     ENV['RACK_ENV']
   end
 end

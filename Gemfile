@@ -42,3 +42,6 @@ gem 'airbrake'
 
 # search
 gem 'searchkick'
+
+# Exception notification
+gem 'airbrake'
