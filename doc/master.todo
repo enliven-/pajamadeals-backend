@@ -1,7 +1,5 @@
 * Mail sending integration
-* Exception notifier
-* setup admin authorization levels
-* Error reporting
+* Error reporting to client
 * handle edge cases of user entering data
 * Client authentication
 * 
