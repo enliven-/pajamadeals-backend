@@ -19,7 +19,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    raise 'Sinatra has left the room'
     ENV['RACK_ENV']
   end
 end
