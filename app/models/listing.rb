@@ -20,7 +20,7 @@ class Listing < ActiveRecord::Base
 
   enum quality: { like_new: 0, average_used: 1, heavily_used: 2 }
   enum markings: { no_markings: 0, few: 1, heavily_marked: 2 }
-  
+
   scope :list, -> { where(spam: false) }
 
   def serialized_hash(options = {})
@@ -67,7 +67,6 @@ class Listing < ActiveRecord::Base
       university_id:  college.university.id,
       college_id:     college.id,
       publication_id: publication.id,
-      list:           list,
       spam: spam
     }
   end

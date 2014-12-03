@@ -14,7 +14,6 @@ class ListingsControllerTest < MiniTest::Test
     resp = [listing1.serialized_hash, listing2.serialized_hash].to_json
 
     get '/'
-
     assert last_response.ok?
     assert_equal resp, last_response.body
   end
@@ -117,11 +116,11 @@ class ListingsControllerTest < MiniTest::Test
     assert last_response.ok?
     assert_equal resp, last_response.body
   end
-  
+
   def test_index_do_not_list_spam
     listing1 = create :listing
     listing2 = create :listing, spam: true
-    
+
     get '/'
     resp = [listing1.serialized_hash].to_json
     assert last_response.ok?
@@ -131,23 +130,23 @@ class ListingsControllerTest < MiniTest::Test
   def test_index_do_not_list_deleted
     listing1 = create :listing
     listing2 = create :listing, deleted: true
-    
+
     get '/'
     resp = [listing1.serialized_hash].to_json
     assert last_response.ok?
     assert_equal resp, last_response.body
   end
-  
+
   def test_index_do_not_list_sold
     listing1 = create :listing
     listing2 = create :listing, sold: true
-    
+
     get '/'
     resp = [listing1.serialized_hash].to_json
     assert last_response.ok?
     assert_equal resp, last_response.body
   end
-  
+
   ## test show
 
   # context: record exists

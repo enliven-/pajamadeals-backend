@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'sinatra', '1.4.5'
-gem 'sinatra-contrib'
+gem 'sinatra-contrib', require: false
 
 # models and database
 gem 'activerecord', '~> 4.1.7'
@@ -32,7 +32,7 @@ gem 'mini_magick'
 
 
 # deployment
-gem 'capistrano'
+gem 'capistrano', '3.2.1'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'
 gem 'capistrano-db-tasks', require: false
