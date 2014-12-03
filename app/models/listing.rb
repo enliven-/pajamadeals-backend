@@ -18,8 +18,12 @@ class Listing < ActiveRecord::Base
   extend CarrierWave::Mount
   mount_uploader :image, ImageUploader
 
-  enum quality: { like_new: 0, average_used: 1, heavily_used: 2 }
-  enum markings: { no_markings: 0, few: 1, heavily_marked: 2 }
+  enum quality: { "like new" => 0,
+                  "fair" => 1,
+                  "heavily used" => 2 }
+  enum markings: { "no markings" => 0,
+                   "few markings" => 1,
+                   "heavily marked" => 2 }
 
   scope :list, -> { where(spam: false) }
 

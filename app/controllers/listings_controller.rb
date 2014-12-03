@@ -8,10 +8,6 @@ class ListingsController < ApplicationController
     if params.present?
       params[:id]        = params[:id].to_i \
                                         if params[:id].present?
-      params[:quality]   = params[:quality].to_i \
-                                        if params[:quality].present?
-      params[:markings]  = params[:markings].to_i \
-                                        if params[:markings].present?
       params[:userd_id]  = params[:userd_id].to_i \
                                         if params[:userd_id].present?
       params[:bookd_id]  = params[:bookd_id].to_i \
