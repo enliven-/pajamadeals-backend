@@ -138,7 +138,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 4.1.7)
-  airbrake
+  airbrake (= 4.1.0)
   capistrano (= 3.2.1)
   capistrano-bundler
   capistrano-db-tasks

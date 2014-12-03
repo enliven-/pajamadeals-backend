@@ -38,10 +38,7 @@ gem 'capistrano-bundler'
 gem 'capistrano-db-tasks', require: false
 
 # error logging
-gem 'airbrake'
+gem 'airbrake', '4.1.0'
 
 # search
 gem 'searchkick'
-
-# Exception notification
-gem 'airbrake'
