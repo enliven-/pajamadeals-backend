@@ -1,10 +1,5 @@
-* Search engine integration
 * Mail sending integration
 * Exception notifier
-* @pajamadeals.in email
-* setup admin side of order
 * setup admin authorization levels
-* show listings and order in admin according to ambassador's college
-* def list? on listing
 * Error reporting
 * handle edge cases of user entering data
