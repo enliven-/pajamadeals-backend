@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler'
-
 Bundler.require
+require 'sinatra/json'
 
 ENV['RACK_ENV'] ||= 'development'
 
