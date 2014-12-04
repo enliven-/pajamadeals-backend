@@ -9,14 +9,34 @@ class OrdersControllerTest < MiniTest::Test
   # test create
   def test_create
     order = build(:order).attributes.except("id", "created_at", "updated_at",
-                                           "seller_id")
+                                           "seller_id", "status")
       .merge(buyer_attributes: build(:ankush).attributes.except("id"))
     order_count = Order.count
 
     post '/', order
 
     assert last_response.ok?
-    assert order_count + 1, Order.count
+    assert_equal order_count + 1, Order.count
+    assert_equal Order.last.serialized_hash.to_json, last_response.body
+    assert_equal "order placed", Order.last.status
+  end
+
+  # test delete / cancel order
+  def test_update_status_cancelled
+    order = create :order
+
+    assert_equal "order placed", order.status
+
+    put '/', { id: order.id, status: "cancelled" }
+
+    assert last_response.ok?
+    assert last_response.ok?
+    refute_equal last_response.body, order.serialized_hash.to_json
+
+    order.reload
+
+    assert_equal "cancelled", order.status
+    assert_equal order.serialized_hash.to_json, last_response.body
   end
 
   # test index
