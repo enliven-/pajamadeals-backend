@@ -26,10 +26,15 @@ class ListingsController < ApplicationController
     conditions = {}
     conditions[:college_id]     = params[:college_id] if params[:college_id]
     conditions[:semester_id]    = params[:semester_id] if params[:semester_id]
-    conditions[:department_id]  = params[:department_id] if params[:department_id]
-    conditions[:publication_id] = params[:publication_id] if params[:publication_id]
+    conditions[:department_id]  = params[:department_id] \
+                                    if params[:department_id]
+    conditions[:publication_id] = params[:publication_id] \
+                                    if params[:publication_id]
 
-    @listings = Listing.search(params[:q], where: conditions, facets: [:college_id, :department_id, :publication_id, :semester_id], smart_facets: true).results
+    @listings = Listing.search(params[:q], where: conditions,
+                               facets: [:college_id, :department_id,
+                                        :publication_id, :semester_id],
+                               smart_facets: true).results
     @listings.collect! { |listing| listing.serialized_hash }
     json @listings
   end
