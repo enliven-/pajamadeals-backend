@@ -29,4 +29,17 @@ class OrdersController < ApplicationController
       # error
     end
   end
+
+  get '/' do
+    user = User.find_by(mobile: params[:mobile])
+    # halt 404, ActiveRecord::RecordNotFound
+    orders = user.send(params[:type])
+    serialized_orders = orders.collect { |order| order.serialized_hash }
+    json serialized_orders
+  end
+
+  get '/:id' do
+    order = Order.find(params[:id])
+    json order.serialized_hash
+  end
 end

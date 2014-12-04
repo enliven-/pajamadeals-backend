@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
     status == "handler assigned"
   end
 
-  def serialized_hash
+  def serialized_hash(options = {})
     data = {}
 
     data[:id]                  = id
@@ -32,6 +32,8 @@ class Order < ActiveRecord::Base
     data[:seller_confirmed_at] = seller_confirmed_at.try(:to_s)
     data[:item_picked_at]      = item_picked_at.try(:to_s)
     data[:status]              = status
+    data[:created_at]          = created_at.to_s
+    data[:updated_at]          = updated_at.to_s
 
     data[:listing]         = {}
     data[:listing][:id]    = listing.id
