@@ -10,8 +10,7 @@ class UserTest < MiniTest::Test
     assert user.respond_to?(:name)
     assert user.respond_to?(:mobile)
     assert user.respond_to?(:role)
-    assert user.respond_to?(:department)
-    assert user.respond_to?(:semester)
+    assert user.respond_to?(:email)
   end
 
   def test_user_relations
@@ -21,6 +20,8 @@ class UserTest < MiniTest::Test
     assert user.respond_to?(:listings)
     assert user.respond_to?(:sell_orders)
     assert user.respond_to?(:buy_orders)
+    assert user.respond_to?(:department)
+    assert user.respond_to?(:semester)
   end
 
   # validations
