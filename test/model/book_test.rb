@@ -8,6 +8,7 @@ class BookTest < MiniTest::Test
     assert book.respond_to?(:title)
     assert book.respond_to?(:authors)
     assert book.respond_to?(:mrp)
+    assert book.respond_to?(:book_type)
   end
 
   def test_book_relations
