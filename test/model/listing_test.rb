@@ -14,7 +14,6 @@ class ListingTest < MiniTest::Test
     assert listing.respond_to?(:sold)
     assert listing.respond_to?(:markings)
     assert listing.respond_to?(:quality)
-    assert listing.respond_to?(:torn)
   end
 
   def test_listing_relations
