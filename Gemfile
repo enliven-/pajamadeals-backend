@@ -10,7 +10,6 @@ gem 'mysql2', '0.3.17'
 
 # development helpers
 gem 'shotgun',  group: :development
-gem 'tux',      group: :development
 gem 'gem-open', group: :development
 gem 'thin',     group: :development
 
@@ -39,3 +38,6 @@ gem 'airbrake', '4.1.0'
 
 # search
 gem 'searchkick'
+
+# console
+gem 'tux'
