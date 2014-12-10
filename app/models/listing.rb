@@ -46,11 +46,7 @@ class Listing < ActiveRecord::Base
     data[:image]         = {}
     data[:image][:thumb] = image.try(:thumb).try(:url)
 
-    data[:college]        = {}
-    data[:college][:id]   = college.id
-    data[:college][:name] = college.name
-    data[:college][:abbr] = college.abbr
-    data[:college][:city] = college.city
+    data[:college] = college.serlaized_hash
 
     data
   end
