@@ -8,10 +8,10 @@ class College < ActiveRecord::Base
   def serialized_hash(options = {})
     data = {}
 
-    data[:id]   = college.id
-    data[:name] = college.name
-    data[:abbr] = college.abbr
-    data[:city] = college.city
+    data[:id]   = id
+    data[:name] = name
+    data[:abbr] = abbr
+    data[:city] = city
 
     data
   end

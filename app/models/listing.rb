@@ -15,9 +15,6 @@ class Listing < ActiveRecord::Base
   delegate :title, :authors, :mrp, :department, :semester, :subject,
            :publication, to: :book
 
-  extend CarrierWave::Mount
-  mount_uploader :image, ImageUploader
-
   enum quality: { "like new" => 0,
                   "fair" => 1,
                   "heavily used" => 2 }
@@ -46,7 +43,7 @@ class Listing < ActiveRecord::Base
     data[:image]         = {}
     data[:image][:thumb] = image.try(:thumb).try(:url)
 
-    data[:college] = college.serlaized_hash
+    data[:college] = college.serialized_hash
 
     data
   end
