@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
   end
 
   get '/' do
+    params[:type] ||= :buy_orders
     user = User.find_by(mobile: params[:mobile])
     # halt 404, ActiveRecord::RecordNotFound
     if user.present?

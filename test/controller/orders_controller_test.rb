@@ -64,17 +64,28 @@ class OrdersControllerTest < MiniTest::Test
     assert_match [].to_json, last_response.body
   end
   
-  # returns an empty array when orders doesn't exist for a user
+  # test index returns an empty array when orders doesn't exist for a user
   def test_index_returns_empty_array_for_no_orders
     order = create :order
     buyer_mobile = order.buyer.mobile
     
     order.destroy
     
-    get '/', mobile: '9976543210', type: 'buy_orders'
+    get '/', mobile: buyer_mobile, type: 'buy_orders'
     
     assert last_response.ok?
     assert_match [].to_json, last_response.body
+  end
+  
+  # test index returns buy orders of type not given
+  def test_index_returns_buy_orders_if_type_not_given
+    order = create :order
+    buyer_mobile = order.buyer.mobile
+    
+    get '/', mobile: buyer_mobile
+    
+    assert last_response.ok?
+    assert [order.serialized_hash].to_json, last_response.body
   end
 
   # test show
