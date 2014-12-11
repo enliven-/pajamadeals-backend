@@ -53,6 +53,29 @@ class OrdersControllerTest < MiniTest::Test
     assert last_response.ok?
     assert_match [order2.serialized_hash].to_json, last_response.body
   end
+  
+  # test index when user does not exist returns empty array
+  def test_index_when_user_does_not_exist
+    order = create :order
+    
+    get '/', mobile: '12345', type: 'buy_orders'
+    
+    assert last_response.ok?
+    assert_match [].to_json, last_response.body
+  end
+  
+  # returns an empty array when orders doesn't exist for a user
+  def test_index_returns_empty_array_for_no_orders
+    order = create :order
+    buyer_mobile = order.buyer.mobile
+    
+    order.destroy
+    
+    get '/', mobile: '9976543210', type: 'buy_orders'
+    
+    assert last_response.ok?
+    assert_match [].to_json, last_response.body
+  end
 
   # test show
   def test_show_order
