@@ -11,7 +11,7 @@ class App
         'pajamadeals.dev'
       end
     end
-    
+
     def domain
       host
     end
@@ -23,7 +23,7 @@ class App
     def url
       "http://#{host}"
     end
-    
+
     def logo
       'pajamadeals'
     end
@@ -34,6 +34,10 @@ class App
 
     def sender_password
       ENV['B_PASSWORD']
+    end
+
+    def root
+      Pathname.new File.expand_path(File.dirname(__FILE__) + "../../")
     end
   end
 
