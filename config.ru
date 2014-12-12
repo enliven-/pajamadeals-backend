@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require
 require 'sinatra/json'
+require 'carrierwave/orm/activerecord'
 
 ENV['RACK_ENV'] ||= 'development'
 

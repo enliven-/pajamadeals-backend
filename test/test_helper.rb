@@ -9,6 +9,7 @@ require 'sinatra/json'
 # require 'minitest/emoji'
 
 Bundler.require(:default, :test)
+require 'carrierwave/orm/activerecord'
 
 Dir.glob('./{config/initializers,app/uploaders,lib,app/helpers,app/controllers,app/models}/*.rb').each do |file|
   require file
