@@ -6,6 +6,8 @@ class ApplicationController < Sinatra::Base
                                       "http://pajamadeals.in",
                                       "http://localhost:9393"]
 
+  register Sinatra::JsonBodyParams
+
   configure :test do
     ActiveRecord::Base.logger = nil
   end

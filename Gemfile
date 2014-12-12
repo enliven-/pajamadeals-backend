@@ -41,3 +41,5 @@ gem 'searchkick'
 
 # console
 gem 'tux'
+
+gem 'multi_json'
