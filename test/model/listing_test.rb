@@ -79,8 +79,11 @@ class ListingTest < MiniTest::Test
   end
 
   # images
-  def test_image_upload
+  def test_defaults_to_first_book_image
+    book = create :book_with_images
+    listing = create :listing, book: book
 
-
+    assert listing.image.present?
+    assert_equal book.images.first, listing.image
   end
 end
