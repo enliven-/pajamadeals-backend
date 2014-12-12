@@ -24,7 +24,11 @@ class ListingsController < ApplicationController
   get '/' do
     params[:q] ||= '*'
     conditions = {}
-    conditions[:college_id]     = params[:college_id] if params[:college_id]
+    if params[:college_id].present?
+      college = College.find(params[:college_id])
+      college_ids = college.nearest_colleges('1km').map(&:id)
+      conditions[:college_id] = college_ids
+    end
     conditions[:semester_id]    = params[:semester_id] if params[:semester_id]
     conditions[:department_id]  = params[:department_id] \
                                     if params[:department_id]

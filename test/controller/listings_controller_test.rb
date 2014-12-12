@@ -72,21 +72,6 @@ class ListingsControllerTest < MiniTest::Test
     assert_equal resp, last_response.body
   end
 
-  def test_index_with_college_filter
-    college1 = create :college, name: 'Vishwakarma Institute of Technology'
-    college2 = create :college, name: 'Cummins College'
-    user1 = create :user, college: college1
-    user2 = create :user, college: college2
-    listing1 = create :listing, user: user1
-    listing2 = create :listing, user: user2
-    Listing.reindex
-
-    get '/', college_id: college1.id
-    resp = [listing1.serialized_hash].to_json
-    assert last_response.ok?
-    assert_equal resp, last_response.body
-  end
-
   def test_index_with_department_filter
     department1 = create :department, name: 'Mechanical Engineering'
     department2 = create :department, name: 'Computer Engineering'
@@ -113,6 +98,22 @@ class ListingsControllerTest < MiniTest::Test
 
     get '/', semester_id: semester1.id
     resp = [listing1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  def test_index_with_college_filter_and_location
+    mit = create :mit
+    mitcoe = create :mitcoe
+    user1 = create :user, college: mit
+    user2 = create :user, college: mitcoe
+    listing1 = create :listing, user: user1
+    listing2 = create :listing, user: user2
+    Listing.reindex
+    College.reindex
+
+    get '/', college_id: mit.id
+    resp = [listing1.serialized_hash, listing2.serialized_hash].to_json
     assert last_response.ok?
     assert_equal resp, last_response.body
   end
