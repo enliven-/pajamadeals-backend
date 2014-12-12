@@ -2,7 +2,7 @@ require_relative '../test_helper.rb'
 
 class CollegeTest < MiniTest::Test
 
-  def test_college_sttributes
+  def test_college_attributes
     college = College.new
 
     assert college.respond_to?(:name)
@@ -21,5 +21,15 @@ class CollegeTest < MiniTest::Test
     assert college.respond_to?(:books)
     assert college.respond_to?(:orders)
     assert college.respond_to?(:users)
+  end
+
+  def test_geolocation_works
+    college1 = create :college, latitude: '18.511766', longitude: '73.819759'
+    college2 = create :college, latitude: '18.519206', longitude: '73.814940'
+    college3 = create :college, latitude: '18.520467', longitude: '73.856716'
+
+    assert_includes college1.nearest_colleges, college1
+    assert_includes college1.nearest_colleges, college2
+    refute_includes college1.nearest_colleges, college3
   end
 end
