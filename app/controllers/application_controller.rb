@@ -2,6 +2,8 @@ class ApplicationController < Sinatra::Base
   helpers ApplicationHelper
   enable :logging
   enable :raise_errors
+  set :protection, origin_whitelist: ["http://www.pajamadeals.in",
+                                      "http://pajamadeals.in"]
 
   configure :test do
     ActiveRecord::Base.logger = nil
