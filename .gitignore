@@ -1,1 +1,7 @@
 .DS_Store
+public/uploads
+db/*.sql.gz
+db/*.sql
+db/*.sql.bkp
+db/*.sql.bz2
+test/public/
