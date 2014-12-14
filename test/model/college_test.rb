@@ -27,6 +27,7 @@ class CollegeTest < MiniTest::Test
     college1 = create :college, latitude: '18.511766', longitude: '73.819759'
     college2 = create :college, latitude: '18.519206', longitude: '73.814940'
     college3 = create :college, latitude: '18.520467', longitude: '73.856716'
+    College.reindex
 
     assert_includes college1.nearest_colleges, college1
     assert_includes college1.nearest_colleges, college2
