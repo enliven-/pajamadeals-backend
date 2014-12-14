@@ -43,14 +43,14 @@ class ListingsController < ApplicationController
     json @listings
   end
 
-  get '/show/:id' do
+  get '/:id' do
     listing = Listing.find(params[:id])
 
     json listing.serialized_hash
   end
 
   post '/' do
-    user_attributes = params.delete("user_attributes")
+    user_attributes = params.delete(:user_attributes)
 
     user = User.find_by(mobile: user_attributes[:mobile]) ||
                                                     User.create(user_attributes)

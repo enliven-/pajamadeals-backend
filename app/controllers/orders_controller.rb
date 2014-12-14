@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   post '/' do
-    buyer_attributes = params.delete("buyer_attributes")
+    buyer_attributes = params.delete(:buyer_attributes)
     buyer = User.find_by(mobile: buyer_attributes[:mobile]) ||
                                                   User.create(buyer_attributes)
 
