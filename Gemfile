@@ -15,7 +15,6 @@ gem 'thin',     group: :development
 
 # testing
 gem 'minitest',           group: :test
-gem 'multi_json',         group: :test
 gem 'rack-test',          group: :test
 gem 'mocha',              group: :test
 gem 'factory_girl',       group: :test
