@@ -13,7 +13,7 @@ class OrdersControllerTest < MiniTest::Test
       .merge(buyer_attributes: build(:ankush).attributes.except("id"))
     order_count = Order.count
 
-    post '/', order
+    post_json '/', order
 
     assert last_response.ok?
     assert_equal order_count + 1, Order.count
@@ -27,7 +27,7 @@ class OrdersControllerTest < MiniTest::Test
 
     assert_equal "order placed", order.status
 
-    put '/', { id: order.id, status: "cancelled" }
+    put_json '/', { id: order.id, status: "cancelled" }
 
     assert last_response.ok?
     assert last_response.ok?

@@ -155,7 +155,7 @@ class ListingsControllerTest < MiniTest::Test
     listing = create :listing
     id = listing.id
 
-    get "/show/#{id}"
+    get "/#{id}"
 
     assert last_response.ok?
     assert_equal listing.serialized_hash.to_json, last_response.body
@@ -171,7 +171,7 @@ class ListingsControllerTest < MiniTest::Test
   #   listing = build(:listing).attributes.except(:id, :created_at, :updated_at)
   #   listing_count = Listing.count
 
-  #   post '/create', listing: listing
+  #   post_json '/create', listing: listing
 
   #   assert last_response.ok?
   #   assert_equal listing_count + 1, Listing.count
@@ -187,7 +187,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     user_count = User.count
 
-    post '/', listing
+    post_json '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
@@ -204,7 +204,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     user_count = User.count
 
-    post '/', listing
+    post_json '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
@@ -221,7 +221,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     book_count = Book.count
 
-    post '/', listing
+    post_json '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
@@ -236,7 +236,7 @@ class ListingsControllerTest < MiniTest::Test
     listing_count = Listing.count
     book_count = Book.count
 
-    post '/', listing
+    post_json '/', listing
 
     assert last_response.ok?
     assert_equal listing_count + 1, Listing.count
