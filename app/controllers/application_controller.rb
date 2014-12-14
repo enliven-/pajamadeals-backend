@@ -2,9 +2,11 @@ class ApplicationController < Sinatra::Base
   helpers ApplicationHelper
   enable :logging
   enable :raise_errors
-  set :protection, origin_whitelist: ["http://www.pajamadeals.in",
-                                      "http://pajamadeals.in",
-                                      "http://localhost:9393"]
+  # set :protection, origin_whitelist: ["http://www.pajamadeals.in",
+#                                       "http://pajamadeals.in",
+#                                       "http://localhost:9393"]
+
+  set :protection, except: [:json_csrf]
 
   register Sinatra::JsonBodyParams
 
