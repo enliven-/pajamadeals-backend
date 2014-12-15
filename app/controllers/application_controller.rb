@@ -6,8 +6,9 @@ class ApplicationController < Sinatra::Base
 #                                       "http://pajamadeals.in",
 #                                       "http://localhost:9393"]
 
-  set :protection, except: [:json_csrf]
-
+  # set :protection, except: [:json_csrf]
+  
+  register Sinatra::CrossOrigin
   register Sinatra::JsonBodyParams
 
   configure :test do
@@ -15,11 +16,19 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production do
+    enable :cross_origin
+    
     Airbrake.configure do |config|
       config.api_key = 'ad611d7eb53d2966bf69f90fedb523be'
     end
     use Airbrake::Sinatra
   end
+  
+  set :allow_origin, :any
+  set :allow_methods, [:get, :post, :options]
+  set :allow_credentials, true
+  set :max_age, "1728000"
+  set :expose_headers, ['Content-Type']
 
   before do
     # request.url =~ /^https?:\/\/([\da-z\.-]+)?pajamadeals\.in/)
