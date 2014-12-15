@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
   # cross origin request configuration  
   set :allow_origin, :any
-  set :allow_methods, [:get, :post, :put, :delete, :options]
+  set :allow_methods, [:get, :post, :options]
   set :allow_credentials, true
   set :max_age, "1728000"
   set :expose_headers, ['Content-Type']
