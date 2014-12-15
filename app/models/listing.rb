@@ -41,7 +41,7 @@ class Listing < ActiveRecord::Base
     data[:publication]   = publication.try(:name)
 
     data[:image]         = {}
-    data[:image][:thumb] = image.try(:thumb).try(:url)
+    data[:image][:thumb] = image.try(:file).try(:thumb).try(:url)
 
     data[:college] = college.serialized_hash
 
