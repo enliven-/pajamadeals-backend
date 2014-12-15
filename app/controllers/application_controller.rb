@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
 #                                       "http://pajamadeals.in",
 #                                       "http://localhost:9393"]
 
-  # set :protection, except: [:json_csrf]
+  set :protection, except: [:json_csrf]
   
   register Sinatra::CrossOrigin
   register Sinatra::JsonBodyParams
@@ -23,9 +23,10 @@ class ApplicationController < Sinatra::Base
     end
     use Airbrake::Sinatra
   end
-  
+
+  # cross origin request configuration  
   set :allow_origin, :any
-  set :allow_methods, [:get, :post, :options]
+  set :allow_methods, [:get, :post, :put, :delete, :options]
   set :allow_credentials, true
   set :max_age, "1728000"
   set :expose_headers, ['Content-Type']
@@ -45,6 +46,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    json ENV['RACK_ENV']
+    "Hello!"
   end
 end
