@@ -44,6 +44,11 @@ class ApplicationController < Sinatra::Base
     # end
     content_type :json
   end
+  
+  options "*" do
+    response.headers["Allow"] = "HEAD,GET,PUT,DELETE,OPTIONS"
+    halt 200
+  end
 
   get '/' do
     "Hello!"
