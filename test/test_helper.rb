@@ -55,14 +55,3 @@ class MiniTest::Test
     send verb, path, params.to_json, headers.merge({ "CONTENT_TYPE" => "application/json" })
   end
 end
-
-
-require "json"
-
-module Rack
-  module Minitest
-    module JSON
-      
-    end
-  end
-end
