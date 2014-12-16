@@ -31,4 +31,15 @@ class BooksControllerTest < MiniTest::Test
     assert last_response.ok?
     assert_equal response, last_response.body
   end
+
+  def test_index_search_with_spelling_mistake
+    book1 = create :book, title: 'Thoery of Machine'
+    book2 = create :book, title: 'Computer of Machine'
+    Book.reindex
+
+    get '/', q: 'computr'
+    assert last_response.ok?
+    assert_equal [book2.serialized_hash].to_json, last_response.body
+  end
+
 end

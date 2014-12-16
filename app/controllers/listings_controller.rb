@@ -24,7 +24,7 @@ class ListingsController < ApplicationController
   get '/' do
     params[:q] ||= '*'
     conditions = {}
-    
+
     # default conditions
     conditions[:deleted] = false
     conditions[:spam]    = false
