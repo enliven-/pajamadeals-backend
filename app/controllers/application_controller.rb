@@ -47,6 +47,7 @@ class ApplicationController < Sinatra::Base
   
   options "*" do
     response.headers["Allow"] = "HEAD,GET,PUT,DELETE,OPTIONS"
+    response.headers["Access-Control-Allow-Origin"] = "*"
     halt 200
   end
 
