@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
     user = User.find_by(mobile: params[:mobile])
     # halt 404, ActiveRecord::RecordNotFound
     if user.present?
-      orders = user.try(params[:type])
+      orders = user.try(params[:type]).order(created_at: :desc)
       serialized_orders = orders.collect { |order| order.serialized_hash }
       json serialized_orders
     else

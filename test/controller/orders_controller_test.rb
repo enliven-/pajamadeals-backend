@@ -40,6 +40,20 @@ class OrdersControllerTest < MiniTest::Test
   end
 
   # test index
+  def test_index_sort_order_by_created_at_desc
+    user = create :user, mobile: '9975454384'
+    order1 = create :order, buyer: user
+    order2 = ''
+    Timecop.travel(1.day) do
+      order2 = create :order, buyer: user
+    end
+
+    get '/', mobile: '9975454384'
+    resp = [order2.serialized_hash, order1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
   def test_index_for_buy_orders
     user1 = create :user, mobile: '9988776655'
     user2 = create :user, mobile: '9988776644'
@@ -53,37 +67,37 @@ class OrdersControllerTest < MiniTest::Test
     assert last_response.ok?
     assert_match [order2.serialized_hash].to_json, last_response.body
   end
-  
+
   # test index when user does not exist returns empty array
   def test_index_when_user_does_not_exist
     order = create :order
-    
+
     get '/', mobile: '12345', type: 'buy_orders'
-    
+
     assert last_response.ok?
     assert_match [].to_json, last_response.body
   end
-  
+
   # test index returns an empty array when orders doesn't exist for a user
   def test_index_returns_empty_array_for_no_orders
     order = create :order
     buyer_mobile = order.buyer.mobile
-    
+
     order.destroy
-    
+
     get '/', mobile: buyer_mobile, type: 'buy_orders'
-    
+
     assert last_response.ok?
     assert_match [].to_json, last_response.body
   end
-  
+
   # test index returns buy orders of type not given
   def test_index_returns_buy_orders_if_type_not_given
     order = create :order
     buyer_mobile = order.buyer.mobile
-    
+
     get '/', mobile: buyer_mobile
-    
+
     assert last_response.ok?
     assert [order.serialized_hash].to_json, last_response.body
   end
