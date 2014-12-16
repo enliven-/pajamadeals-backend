@@ -24,6 +24,7 @@ class BooksControllerTest < MiniTest::Test
     book1 = create :book, title: 'book 1'
     book2 = create :book, title: 'book 2'
     book3 = create :book, title: 'foo bar'
+    Book.reindex
 
     get '/', q: 'book'
     response = [book1.serialized_hash, book2.serialized_hash].to_json
