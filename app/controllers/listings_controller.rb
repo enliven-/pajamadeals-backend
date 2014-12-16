@@ -39,6 +39,7 @@ class ListingsController < ApplicationController
                                facets: [:college_id, :department_id,
                                         :publication_id, :semester_id],
                                smart_facets: true,
+                               order: { created_at: :desc },
                                per_page: 20, page: params[:page]).results
     @listings.collect! { |listing| listing.serialized_hash }
     json @listings

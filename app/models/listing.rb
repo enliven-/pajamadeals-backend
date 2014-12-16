@@ -63,7 +63,8 @@ class Listing < ActiveRecord::Base
       university_id:  college.university.id,
       college_id:     college.id,
       publication_id: publication.id,
-      spam: spam
+      spam:           spam,
+      created_at:     created_at
     }
   end
 

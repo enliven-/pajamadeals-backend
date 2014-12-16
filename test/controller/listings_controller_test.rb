@@ -10,10 +10,34 @@ class ListingsControllerTest < MiniTest::Test
     book1 = create :book, title: 'book 1'
     book2 = create :book, title: 'book 2'
     listing1 = create :listing, book: book1
-    listing2 = create :listing, book: book2
-    resp = [listing1.serialized_hash, listing2.serialized_hash].to_json
+    listing2 = ''
+    Timecop.travel(10.minutes) do
+      listing2 = create :listing, book: book2
+    end
+    Listing.reindex
+
 
     get '/'
+    resp = [listing2.serialized_hash, listing1.serialized_hash].to_json
+    assert last_response.ok?
+    assert_equal resp, last_response.body
+  end
+
+  def test_index_order_by_created_at_desc
+    listing1 = create :listing
+    listing2 = ""
+    listing3 = ""
+    Timecop.travel(3.days) do
+      listing2 = create :listing
+    end
+    Timecop.travel(5.days) do
+      listing3 = create :listing
+    end
+    Listing.reindex
+
+    get '/'
+    resp = [listing3.serialized_hash, listing2.serialized_hash,
+            listing1.serialized_hash].to_json
     assert last_response.ok?
     assert_equal resp, last_response.body
   end
@@ -108,12 +132,13 @@ class ListingsControllerTest < MiniTest::Test
     user1 = create :user, college: mit
     user2 = create :user, college: mitcoe
     listing1 = create :listing, user: user1
+    sleep(1)
     listing2 = create :listing, user: user2
     Listing.reindex
     College.reindex
 
     get '/', college_id: mit.id
-    resp = [listing1.serialized_hash, listing2.serialized_hash].to_json
+    resp = [listing2.serialized_hash, listing1.serialized_hash].to_json
     assert last_response.ok?
     assert_equal resp, last_response.body
   end
