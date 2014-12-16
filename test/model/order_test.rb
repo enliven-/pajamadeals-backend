@@ -29,4 +29,24 @@ class OrderTest < MiniTest::Test
     assert order.seller.present?
     assert_equal order.listing.user, order.seller
   end
+  
+  def test_mark_listing_sold_on_placeing_order
+    listing = create :listing
+    
+    refute listing.sold?
+    
+    order = create :order, listing: listing
+    
+    assert listing.sold?
+  end
+  
+  def test_mark_listing_unsold_on_cancelling_order
+    listing = create :listing
+    order = create :order, listing: listing
+
+    assert listing.sold?
+
+    order.cancelled!
+    refute listing.sold?
+  end
 end
