@@ -9,6 +9,7 @@ class ListingTest < MiniTest::Test
 
     assert listing.respond_to?(:description)
     assert listing.respond_to?(:price)
+    assert listing.respond_to?(:mrp)
     assert listing.respond_to?(:spam)
     assert listing.respond_to?(:deleted)
     assert listing.respond_to?(:sold)
