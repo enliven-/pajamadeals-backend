@@ -24,6 +24,13 @@ class ListingsController < ApplicationController
   get '/' do
     params[:q] ||= '*'
     conditions = {}
+    
+    # default conditions
+    conditions[:deleted] = false
+    conditions[:spam]    = false
+    conditions[:sold]    = false
+
+    # params conditions
     if params[:college_id].present?
       college = College.find(params[:college_id])
       college_ids = college.nearest_colleges('1km').map(&:id)
