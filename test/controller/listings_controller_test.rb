@@ -16,7 +16,6 @@ class ListingsControllerTest < MiniTest::Test
     end
     Listing.reindex
 
-
     get '/'
     resp = [listing2.serialized_hash, listing1.serialized_hash].to_json
     assert last_response.ok?
@@ -146,6 +145,7 @@ class ListingsControllerTest < MiniTest::Test
   def test_index_do_not_list_spam
     listing1 = create :listing
     listing2 = create :listing, spam: true
+    Listing.reindex
 
     get '/'
     resp = [listing1.serialized_hash].to_json
@@ -156,6 +156,7 @@ class ListingsControllerTest < MiniTest::Test
   def test_index_do_not_list_deleted
     listing1 = create :listing
     listing2 = create :listing, deleted: true
+    Listing.reindex
 
     get '/'
     resp = [listing1.serialized_hash].to_json
@@ -166,6 +167,7 @@ class ListingsControllerTest < MiniTest::Test
   def test_index_do_not_list_sold
     listing1 = create :listing
     listing2 = create :listing, sold: true
+    Listing.reindex
 
     get '/'
     resp = [listing1.serialized_hash].to_json
