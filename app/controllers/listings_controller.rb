@@ -33,7 +33,7 @@ class ListingsController < ApplicationController
     # params conditions
     if params[:college_id].present?
       college = College.find(params[:college_id])
-      college_ids = college.nearest_colleges('1km').map(&:id)
+      college_ids = college.nearest_colleges('3km').map(&:id)
       conditions[:college_id] = college_ids
     end
     conditions[:semester_id]    = params[:semester_id] if params[:semester_id]
