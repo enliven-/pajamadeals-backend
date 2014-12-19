@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216181303) do
+ActiveRecord::Schema.define(version: 20141219074305) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -143,12 +143,13 @@ ActiveRecord::Schema.define(version: 20141216181303) do
     t.boolean  "payment_deposited"
     t.datetime "payment_deposited_at"
     t.integer  "listing_id"
-    t.integer  "college_id"
+    t.integer  "seller_college_id"
     t.integer  "seller_id"
     t.integer  "buyer_id"
     t.integer  "handler_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "buyer_college_id"
   end
 
   create_table "publications", force: true do |t|

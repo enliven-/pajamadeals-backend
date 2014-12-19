@@ -19,7 +19,8 @@ class CollegeTest < MiniTest::Test
     assert college.respond_to?(:university)
     assert college.respond_to?(:departments)
     assert college.respond_to?(:books)
-    assert college.respond_to?(:orders)
+    assert college.respond_to?(:sell_orders)
+    assert college.respond_to?(:buy_orders)
     assert college.respond_to?(:users)
   end
 
