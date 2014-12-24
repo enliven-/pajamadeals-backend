@@ -67,4 +67,16 @@ class OrderTest < MiniTest::Test
     assert_equal seller_college, order.seller_college
     assert_equal buyer_college,  order.buyer_college
   end
+  
+  def test_send_notification_to_buyer
+    order = build :order
+    order.expects(:send_notification_to_buyer).returns("sent")
+    order.save
+  end
+  
+  def test_send_notification_to_seller
+    order = build :order
+    order.expects(:send_notification_to_seller).returns("sent")
+    order.save
+  end
 end

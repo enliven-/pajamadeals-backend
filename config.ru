@@ -3,6 +3,7 @@ require 'bundler'
 Bundler.require
 require 'sinatra/json'
 require 'carrierwave/orm/activerecord'
+require 'mandrill'
 
 ENV['RACK_ENV'] ||= 'development'
 

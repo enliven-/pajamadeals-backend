@@ -3,8 +3,10 @@ require 'rubygems'
 require 'bundler'
 require 'minitest/autorun'
 require 'minitest/reporters'
+require 'mocha/mini_test'
 require 'database_cleaner'
 require 'sinatra/json'
+require 'mandrill'
 # require 'minitest/pride'
 # require 'minitest/emoji'
 
@@ -28,7 +30,7 @@ class MiniTest::Test
     DatabaseCleaner.strategy = :truncation, { pre_count: true }
     DatabaseCleaner.clean
   end
-  
+
   def last_json_response
     ::JSON.parse(last_response.body)
   end

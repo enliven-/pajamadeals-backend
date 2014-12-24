@@ -47,12 +47,12 @@ class ListingsControllerTest < MiniTest::Test
     listing1 = create :listing, book: book1
     listing2 = create :listing, book: book2
     Listing.reindex
-
+    
     get '/', q: 'Design of Machine'
     resp = [listing2.serialized_hash].to_json
     assert last_response.ok?
     assert_equal resp, last_response.body
-
+    
     get '/', q: 'Design'
     resp = [listing2.serialized_hash].to_json
     assert last_response.ok?

@@ -87,4 +87,11 @@ class ListingTest < MiniTest::Test
     assert listing.image.present?
     assert_equal book.images.first, listing.image
   end
+
+  # notifications
+  def test_sends_email_on_creation
+    listing = build :listing
+    listing.expects(:send_notification).returns("sent")
+    listing.save
+  end
 end

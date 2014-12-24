@@ -39,6 +39,10 @@ class App
     def root
       Pathname.new File.expand_path(File.dirname(__FILE__) + "../../")
     end
+
+    def transaction_cost
+      '10'
+    end
   end
 
 end
