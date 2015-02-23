@@ -32,24 +32,24 @@ class ApplicationController < Sinatra::Base
   set :expose_headers, ['Content-Type']
 
   before do
-    # request.url =~ /^https?:\/\/([\da-z\.-]+)?pajamadeals\.in/)
-    # unless ENV['RACK_ENV'] == 'test' || ENV['RACK_ENV'] == 'development' || \
-    #                       (ENV['RACK_ENV'] == 'production' &&
-    #                        request.url =~ /^https?:\/\/(wwww.)?pajamadeals\.in/)
-    #   halt 403, "403 Forbidden Entry.\n “I’m sorry. I know who you are–I believe
-    #              who you say you are–but you just don’t have permission to
-    #              access this resource. Maybe if you ask the system administrator
-    #              nicely, you’ll get permission. But please don’t bother me again
-    #              until your predicament changes."
-    # end
+    request.url =~ /^https?:\/\/([\da-z\.-]+)?pajamadeals\.in/)
+    unless ENV['RACK_ENV'] == 'test' || ENV['RACK_ENV'] == 'development' || \
+                          (ENV['RACK_ENV'] == 'production' &&
+                           request.url =~ /^https?:\/\/(wwww.)?pajamadeals\.in/)
+      halt 403, "403 Forbidden Entry.\n “I’m sorry. I know who you are–I believe
+                 who you say you are–but you just don’t have permission to
+                 access this resource. Maybe if you ask the system administrator
+                 nicely, you’ll get permission. But please don’t bother me again
+                 until your predicament changes."
+    end
     content_type :json
   end
   
-  options "*" do
-    response.headers["Allow"] = "HEAD,GET,PUT,DELETE,OPTIONS"
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    halt 200
-  end
+  # options "*" do
+#     response.headers["Allow"] = "HEAD,GET,PUT,DELETE,OPTIONS"
+#     response.headers["Access-Control-Allow-Origin"] = "*"
+#     halt 200
+#   end
 
   get '/' do
     "Hello!"
